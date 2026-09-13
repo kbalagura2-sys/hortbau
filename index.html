@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <rect width="400" height="300" fill="#161826"></rect>
+  <rect x="120" y="90" width="160" height="120" fill="none" stroke="#9184d9" stroke-width="2"></rect>
+  <text x="200" y="160" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="500" letter-spacing="6" fill="#e9e9ed">HB</text>
+</svg>
+</template>
+<helmet>
+<link rel="stylesheet" href="_ds/nocturne-0c128ca6-9099-4f2f-b5a1-a1bedc0dfeea/styles.css">
+<script src="_ds/nocturne-0c128ca6-9099-4f2f-b5a1-a1bedc0dfeea/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap">
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    text-wrap: pretty;
+    background:
+      radial-gradient(1200px 720px at 82% -160px, color-mix(in srgb, var(--color-accent-900) 75%, transparent), transparent 60%),
+      radial-gradient(1100px 800px at -10% 100%, color-mix(in srgb, black 30%, transparent), transparent 55%),
+      var(--color-bg);
+  }
+  a { color: var(--color-accent); text-decoration: none; }
+  a:hover { color: var(--color-accent-300); }
+  summary::-webkit-details-marker { display: none; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</helmet>
+
+<div style="--edge: clamp(20px, 5vw, 72px); --leading: 28px; font-family: var(--font-body); color: var(--color-text); font-size: 16px;">
+
+  <nav class="nav" style="padding-inline: max(var(--edge), calc((100% - 1180px) / 2 + var(--edge))); gap: 20px;">
+    <span class="nav-brand" style="letter-spacing: 0.14em; text-transform: uppercase; font-size: 15px;">Hortbau</span>
+    <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
+      <a href="{{ item.href }}" style="white-space: nowrap; font-size: 14px; color: var(--color-neutral-300);" style-hover="color: var(--color-accent);">{{ item.label }}</a>
+    </sc-for>
+    <span style="display: flex; gap: 2px; margin-left: auto; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-sm); padding: 2px;">
+      <sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+        <button type="button" onClick="{{ l.on }}" aria-pressed="{{ l.pressed }}" style="background: {{ l.bg }}; color: {{ l.ink }}; border: 0; border-radius: 3px; font: inherit; font-size: 12px; letter-spacing: 0.06em; padding: 3px 8px; cursor: pointer;">{{ l.label }}</button>
+      </sc-for>
+    </span>
+    <a href="#kontakt" class="btn btn-primary" style="font-size: 14px;">{{ t.navCta }}</a>
+  </nav>
+
+  <div style="max-width: 1180px; margin: 0 auto; padding: 0 var(--edge);">
+
+    <section style="padding: calc(3.5 * var(--leading)) 0 calc(2.5 * var(--leading));">
+      <h1 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(40px, 6vw, 82px); line-height: 1.08; letter-spacing: -0.018em; margin: 0 0 0 -0.06em;">
+        <span style="display: block;">{{ t.heroA }}</span>
+        <span style="display: block; color: var(--color-neutral-400);">{{ t.heroB }}</span>
+      </h1>
+      <p style="font-size: 17.5px; line-height: var(--leading); max-width: 56ch; margin: calc(1.5 * var(--leading)) 0 0; color: var(--color-neutral-200);">{{ t.heroSub }}</p>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: var(--leading);">
+        <a href="#kontakt" class="btn btn-primary">{{ t.heroCta }}</a>
+        <span style="display: flex; align-items: baseline; gap: 8px; font-size: 15px; color: var(--color-neutral-300); font-feature-settings: 'tnum' 1;">
+          <a href="{{ telHref }}">{{ phone }}</a>
+          <span style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-500); border: 1px solid var(--color-neutral-800); border-radius: var(--radius-sm); padding: 1px 5px;">{{ t.ph }}</span>
+        </span>
+      </div>
+    </section>
+  </div>
+
+  <section aria-label="{{ t.statsLabel }}" style="background: radial-gradient(900px 420px at 85% -40%, color-mix(in srgb, var(--color-section-glow) 70%, transparent), transparent 64%), var(--color-section); padding: calc(2.25 * var(--leading)) 0;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 var(--edge);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: calc(1.5 * var(--leading)) var(--leading);">
+        <sc-for list="{{ t.stats }}" as="s" hint-placeholder-count="4">
+          <div>
+            <p style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.1; margin: 0 0 0 -0.055em; color: var(--color-text); font-feature-settings: 'tnum' 1;">{{ s.n }}</p>
+            <p style="font-size: 13px; line-height: 1.4; letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); margin: 14px 0 0;">{{ s.l }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width: 1180px; margin: 0 auto; padding: 0 var(--edge);">
+
+    <section id="objekte" style="padding: calc(3 * var(--leading)) 0 calc(2 * var(--leading)); animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;">
+      <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.objKicker }}</span>
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(28px, 3vw, 38px); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 calc(1.5 * var(--leading));">{{ t.objTitle }}</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+        <sc-for list="{{ t.objects }}" as="o" hint-placeholder-count="3">
+          <article style="border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+            <p style="font-family: var(--font-heading); font-size: 13px; color: var(--color-accent); margin: 0; font-feature-settings: 'tnum' 1;">{{ o.n }}</p>
+            <h3 style="font-family: var(--font-heading); font-weight: 500; font-size: 21px; line-height: 1.25; letter-spacing: -0.01em; margin: 0;">{{ o.title }}</h3>
+            <p style="font-size: 15px; line-height: var(--leading); color: var(--color-neutral-300); margin: 0;">{{ o.body }}</p>
+            <p style="font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-neutral-500); margin: auto 0 0; padding-top: 14px; border-top: 1px solid var(--color-neutral-900); font-feature-settings: 'tnum' 1;">{{ o.meta }}</p>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <section id="technik" style="padding: calc(2.5 * var(--leading)) 0 calc(2 * var(--leading)); animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;">
+      <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.techKicker }}</span>
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(28px, 3vw, 38px); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 12px;">{{ t.techTitle }}</h2>
+      <p style="font-size: 15px; line-height: var(--leading); color: var(--color-neutral-400); max-width: 60ch; margin: 0 0 calc(1.5 * var(--leading));">{{ t.techNote }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+        <sc-for list="{{ t.specs }}" as="sp" hint-placeholder-count="3">
+          <div style="border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); padding: 22px; background: color-mix(in srgb, var(--color-surface) 50%, transparent);">
+            <h3 style="font-family: var(--font-heading); font-weight: 500; font-size: 17px; line-height: 1.3; margin: 0 0 16px;">{{ sp.type }}</h3>
+            <sc-for list="{{ sp.rows }}" as="r" hint-placeholder-count="8">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-top: 1px solid var(--color-neutral-900);">
+                <span style="font-size: 13.5px; line-height: 1.4; color: var(--color-neutral-400);">{{ r.k }}</span>
+                <span style="font-size: 14px; line-height: 1.4; text-align: right; font-feature-settings: 'tnum' 1;">{{ r.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <p style="font-size: 12.5px; line-height: 1.6; color: var(--color-neutral-500); margin: 20px 0 0;">{{ t.specFoot }}</p>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <section id="ablauf" style="padding: calc(2.5 * var(--leading)) 0 calc(2 * var(--leading)); animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;">
+      <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.procKicker }}</span>
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(28px, 3vw, 38px); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 calc(1.25 * var(--leading));">{{ t.procTitle }}</h2>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ t.steps }}" as="st" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: 48px minmax(0, 260px) minmax(0, 1fr) auto; gap: 10px clamp(16px, 3vw, 48px); align-items: baseline; padding: 20px 0; border-top: 1px solid var(--color-neutral-800);">
+            <p style="font-family: var(--font-heading); font-size: 14px; color: var(--color-accent); margin: 0; font-feature-settings: 'tnum' 1;">{{ st.n }}</p>
+            <h3 style="font-family: var(--font-heading); font-weight: 500; font-size: 19px; line-height: 1.3; letter-spacing: -0.01em; margin: 0;">{{ st.title }}</h3>
+            <p style="font-size: 15px; line-height: var(--leading); color: var(--color-neutral-300); margin: 0; max-width: 52ch;">{{ st.body }}</p>
+            <p style="font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-neutral-500); margin: 0; white-space: nowrap; font-feature-settings: 'tnum' 1;">{{ st.dur }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <section id="nachweis" style="padding: calc(2.5 * var(--leading)) 0 calc(2 * var(--leading)); display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--leading) clamp(24px, 5vw, 80px); animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;">
+      <div>
+        <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.docKicker }}</span>
+        <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 14px;">{{ t.docTitle }}</h2>
+        <p style="font-size: 15.5px; line-height: var(--leading); color: var(--color-neutral-300); margin: 0; max-width: 46ch;">{{ t.docIntro }}</p>
+      </div>
+      <div>
+        <sc-for list="{{ t.docs }}" as="d" hint-placeholder-count="5">
+          <div style="padding: 14px 0; border-top: 1px solid var(--color-neutral-800);">
+            <p style="font-size: 15.5px; line-height: 1.4; margin: 0 0 4px;">{{ d.t }}</p>
+            <p style="font-size: 13.5px; line-height: 1.5; color: var(--color-neutral-500); margin: 0; font-feature-settings: 'tnum' 1;">{{ d.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <section id="faq" style="padding: calc(2.5 * var(--leading)) 0 calc(2 * var(--leading)); animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%;">
+      <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.faqKicker }}</span>
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.2; letter-spacing: -0.012em; margin: 0 0 calc(1.25 * var(--leading));">{{ t.faqTitle }}</h2>
+      <div style="max-width: 860px;">
+        <sc-for list="{{ t.faqs }}" as="q" hint-placeholder-count="5">
+          <details style="border-top: 1px solid var(--color-neutral-800);">
+            <summary style="list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 18px 0; font-family: var(--font-heading); font-weight: 500; font-size: 17.5px; line-height: 1.4;" style-hover="color: var(--color-accent-300);">
+              <span>{{ q.q }}</span>
+              <span style="color: var(--color-accent); font-size: 20px; line-height: 1; flex: none;">+</span>
+            </summary>
+            <p style="font-size: 15.5px; line-height: var(--leading); color: var(--color-neutral-300); margin: 0 0 20px; max-width: 62ch;">{{ q.a }}</p>
+          </details>
+        </sc-for>
+      </div>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <section id="kontakt" style="padding: calc(2.5 * var(--leading)) 0 calc(3 * var(--leading));">
+      <span style="display: block; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 14px;">{{ t.conKicker }}</span>
+      <h2 style="font-family: var(--font-heading); font-weight: 500; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.15; letter-spacing: -0.015em; margin: 0 0 14px;">{{ t.conTitle }}</h2>
+      <p style="font-size: 16.5px; line-height: var(--leading); color: var(--color-neutral-300); max-width: 54ch; margin: 0 0 calc(1.5 * var(--leading));">{{ t.conSub }}</p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--leading) clamp(24px, 5vw, 72px); align-items: start;">
+
+        <form noValidate="{{ true }}" onSubmit="{{ onSubmit }}" style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;">
+            <div class="field">
+              <label for="hf-name">{{ t.fName }}</label>
+              <input class="input" id="hf-name" type="text" value="{{ f.name.v }}" onChange="{{ f.name.on }}" autoComplete="name" style="width: 100%; box-sizing: border-box; border-color: {{ f.name.border }};">
+              <p style="font-size: 12.5px; line-height: 1.5; color: var(--color-accent-300); margin: 6px 0 0; min-height: 0;">{{ f.name.e }}</p>
+            </div>
+            <div class="field">
+              <label for="hf-mail">{{ t.fMail }}</label>
+              <input class="input" id="hf-mail" type="email" value="{{ f.email.v }}" onChange="{{ f.email.on }}" autoComplete="email" style="width: 100%; box-sizing: border-box; border-color: {{ f.email.border }};">
+              <p style="font-size: 12.5px; line-height: 1.5; color: var(--color-accent-300); margin: 6px 0 0;">{{ f.email.e }}</p>
+            </div>
+            <div class="field">
+              <label for="hf-tel">{{ t.fTel }}</label>
+              <input class="input" id="hf-tel" type="tel" value="{{ f.tel.v }}" onChange="{{ f.tel.on }}" autoComplete="tel" style="width: 100%; box-sizing: border-box; border-color: {{ f.tel.border }};">
+              <p style="font-size: 12.5px; line-height: 1.5; color: var(--color-accent-300); margin: 6px 0 0;">{{ f.tel.e }}</p>
+            </div>
+            <div class="field">
+              <label for="hf-plz">{{ t.fPlz }}</label>
+              <input class="input" id="hf-plz" type="text" inputMode="numeric" maxLength="5" value="{{ f.plz.v }}" onChange="{{ f.plz.on }}" style="width: 100%; box-sizing: border-box; border-color: {{ f.plz.border }}; font-feature-settings: 'tnum' 1;">
+              <p style="font-size: 12.5px; line-height: 1.5; color: var(--color-accent-300); margin: 6px 0 0;">{{ f.plz.e }}</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="hf-type">{{ t.fType }}</label>
+            <select class="input" id="hf-type" value="{{ f.type.v }}" onChange="{{ f.type.on }}" style="width: 100%; box-sizing: border-box;">
+              <sc-for list="{{ t.typeOptions }}" as="opt" hint-placeholder-count="4">
+                <option value="{{ opt }}">{{ opt }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div class="field">
+            <label for="hf-msg">{{ t.fMsg }}</label>
+            <textarea class="input" id="hf-msg" rows="4" value="{{ f.msg.v }}" onChange="{{ f.msg.on }}" style="width: 100%; box-sizing: border-box; resize: vertical; font-family: inherit;"></textarea>
+          </div>
+          <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.55; color: var(--color-neutral-300); cursor: pointer;">
+            <input type="checkbox" checked="{{ consent.v }}" onChange="{{ consent.on }}" style="margin: 3px 0 0; accent-color: var(--color-accent); flex: none;">
+            <span>{{ t.fConsent }}</span>
+          </label>
+          <p style="font-size: 12.5px; line-height: 1.5; color: var(--color-accent-300); margin: -8px 0 0;">{{ consent.e }}</p>
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <button type="submit" class="btn btn-primary" disabled="{{ busy }}">{{ submitLabel }}</button>
+            <p style="font-size: 13px; line-height: 1.5; color: var(--color-accent-300); margin: 0;">{{ sentNote }}</p>
+            <sc-if value="{{ failed }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ mailHref }}" style="font-size: 13px;">{{ mailLabel }}</a>
+            </sc-if>
+          </div>
+        </form>
+
+        <div>
+          <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="4">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--color-neutral-800);">
+              <p style="font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-neutral-500); margin: 0; grid-column: 1 / -1;">{{ c.k }}</p>
+              <p style="font-size: 16px; line-height: 1.45; margin: 0; font-feature-settings: 'tnum' 1;">{{ c.v }}</p>
+              <span style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-neutral-500); border: 1px solid var(--color-neutral-800); border-radius: var(--radius-sm); padding: 1px 5px;">{{ t.ph }}</span>
+            </div>
+          </sc-for>
+          <div style="margin-top: 22px; border: 1px solid var(--color-neutral-800); border-radius: var(--radius-md); aspect-ratio: 16 / 10; display: grid; place-items: center; text-align: center; padding: 20px; background: color-mix(in srgb, var(--color-surface) 40%, transparent);">
+            <p style="font-size: 13px; line-height: 1.6; color: var(--color-neutral-500); margin: 0; max-width: 30ch;">{{ t.mapNote }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr style="height: 1px; border: 0; margin: 0; background: linear-gradient(to right, transparent, var(--color-divider) 48px calc(100% - 48px), transparent);">
+
+    <footer style="padding: calc(1.75 * var(--leading)) 0 calc(2 * var(--leading)); display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 12.5px; line-height: 1.7; color: var(--color-neutral-500);">
+      <div>
+        <p style="margin: 0; color: var(--color-neutral-400);">Hortbau Schutzbau GmbH</p>
+        <p style="margin: 0; font-feature-settings: 'tnum' 1;">{{ t.legal }}</p>
+        <p style="margin: 0;">{{ t.legalNote }}</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: flex-start;">
+        <sc-for list="{{ t.footerLinks }}" as="l" hint-placeholder-count="4">
+          <a href="#kontakt" style="color: var(--color-neutral-400);" style-hover="color: var(--color-accent);">{{ l }}</a>
+        </sc-for>
+      </div>
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;de&quot;,&quot;en&quot;,&quot;ru&quot;],&quot;default&quot;:&quot;de&quot;,&quot;tsType&quot;:&quot;'de' | 'en' | 'ru'&quot;,&quot;section&quot;:&quot;Inhalt&quot;},&quot;phoneNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;+49 16091456353&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakt&quot;},&quot;formEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;123&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Kontakt&quot;}}">
+const DE = {
+  navCta: "Beratung anfragen",
+  nav: [
+    { href: "#objekte", label: "Objekte" },
+    { href: "#technik", label: "Technik" },
+    { href: "#ablauf", label: "Ablauf" },
+    { href: "#nachweis", label: "Nachweis" },
+    { href: "#faq", label: "FAQ" }
+  ],
+  heroA: "Der Fels unter",
+  heroB: "Ihrem Zuhause.",
+  heroSub: "Hortbau plant und baut private Schutzräume in Baden-Württemberg — schlüsselfertig, von der Baugrundbohrung über die Statik bis zum Abnahmeprotokoll. Gebaut wie ein Haus. Geprüft wie ein Bunker.",
+  heroCta: "Projekt anfragen",
+  ph: "Platzhalter",
+  statsLabel: "Hortbau in Zahlen",
+  stats: [
+    { n: "14 Tage", l: "Autonomie im Vollbetrieb" },
+    { n: "300 mm", l: "Wandstärke, Stahlbeton C35/45" },
+    { n: "60 m³/h", l: "NBC-Filterleistung" },
+    { n: "DIN 25414", l: "Bemessungsgrundlage" }
+  ],
+  objKicker: "Was wir bauen",
+  objTitle: "Drei Wege zum Schutzraum",
+  objects: [
+    { n: "01", title: "Schutzraum im Neubau", body: "Im Rohbau mitgeplant: der Schutzraum wird Teil der Statik, nicht ein Anbau an sie. Der direkteste Weg, solange der Keller noch Schalung ist.", meta: "14–18 Wochen Bauzeit" },
+    { n: "02", title: "Nachrüstung im bestehenden Haus", body: "Kernbohrung, Unterfangung, neue Bodenplatte im Bestandskeller. Wir prüfen zuerst, ob das Haus die Lasten trägt — und sagen es, wenn nicht.", meta: "18–26 Wochen Bauzeit" },
+    { n: "03", title: "Freistehender Bunker im Garten", body: "Eigene Grube, eigene Decke, Zugang über Treppenschacht oder Verbindungsgang zum Haus. Unabhängig von der Substanz des Bestands.", meta: "16–22 Wochen Bauzeit" }
+  ],
+  techKicker: "Technische Daten",
+  techTitle: "Spezifikation nach Objekttyp",
+  techNote: "Die Werte sind unsere Standardbemessung. Grundwasserstand, Baugrundklasse und gewünschte Personenzahl verschieben sie — nach der Grundstücksanalyse, nicht davor.",
+  specs: [
+    { type: "Neubau", rows: [
+      { k: "Wandstärke", v: "300 mm" },
+      { k: "Deckenstärke", v: "350 mm" },
+      { k: "Beton", v: "C35/45, WU" },
+      { k: "Schutztür", v: "1-flügelig, 5 bar" },
+      { k: "NBC-Filteranlage", v: "60 m³/h" },
+      { k: "Autonomie", v: "14 Tage" },
+      { k: "Nutzfläche", v: "12–24 m²" },
+      { k: "Personen", v: "4–8" },
+      { k: "Normen", v: "DIN 25414, ZS-Bauten" }
+    ] },
+    { type: "Nachrüstung im Bestand", rows: [
+      { k: "Wandstärke", v: "250 mm" },
+      { k: "Deckenstärke", v: "300 mm" },
+      { k: "Beton", v: "C35/45, WU" },
+      { k: "Schutztür", v: "1-flügelig, 3 bar" },
+      { k: "NBC-Filteranlage", v: "40 m³/h" },
+      { k: "Autonomie", v: "10 Tage" },
+      { k: "Nutzfläche", v: "8–16 m²" },
+      { k: "Personen", v: "2–6" },
+      { k: "Normen", v: "DIN 25414, sinngemäß" }
+    ] },
+    { type: "Freistehender Bunker", rows: [
+      { k: "Wandstärke", v: "350 mm" },
+      { k: "Deckenstärke", v: "400 mm" },
+      { k: "Beton", v: "C40/50, WU" },
+      { k: "Schutztür", v: "2 Türen, 5 bar" },
+      { k: "NBC-Filteranlage", v: "90 m³/h" },
+      { k: "Autonomie", v: "21 Tage" },
+      { k: "Nutzfläche", v: "20–45 m²" },
+      { k: "Personen", v: "6–14" },
+      { k: "Normen", v: "DIN 25414, ZS-Bauten" }
+    ] }
+  ],
+  specFoot: "Alle Zahlen auf dieser Seite sind Platzhalter zur Abstimmung und vor Veröffentlichung durch die geprüften Bemessungswerte zu ersetzen.",
+  procKicker: "Ablauf",
+  procTitle: "Fünf Schritte, in Wochen gerechnet",
+  steps: [
+    { n: "01", title: "Grundstücksanalyse", body: "Baugrundbohrung, Grundwasserstand, Zufahrt für Bagger und Betonpumpe. Wir bohren, bevor wir rechnen.", dur: "2–3 Wochen" },
+    { n: "02", title: "Statik & Genehmigung", body: "Bemessung nach DIN 25414, Nachweis für den Bestand, Einreichung beim Bauamt und Begleitung bis zur Zustimmung.", dur: "4–8 Wochen" },
+    { n: "03", title: "Bau", body: "Aushub, Bodenplatte, Wände und Decke. Die Schutzhülle wird in einem Guss betoniert — keine kalte Fuge im Schutzbereich.", dur: "6–10 Wochen" },
+    { n: "04", title: "Technik & Filteranlage", body: "Schutztür, NBC-Filter, Notausstieg, Strom, Wasser, Lüftung und Notstrom. Montage und Einregulierung.", dur: "2–4 Wochen" },
+    { n: "05", title: "Abnahmeprotokoll", body: "Dichtheits- und Überdruckprüfung, Messung der Filterleistung, Einweisung und Übergabe der Unterlagen.", dur: "1 Woche" }
+  ],
+  docKicker: "Nachweis",
+  docTitle: "Was am Ende in Ihrem Ordner liegt",
+  docIntro: "Wir verkaufen keine Zuversicht, sondern geprüfte Werte. Jedes Objekt wird mit Messwerten übergeben — nachrechenbar, auch von Dritten.",
+  docs: [
+    { t: "Statischer Nachweis", d: "Prüfstatik nach DIN 25414, gesiegelt vom Prüfingenieur" },
+    { t: "Dichtheits- und Überdruckprüfung", d: "Protokoll mit Messreihe, Leckrate in m³/h bei Prüfdruck" },
+    { t: "Filterleistungsmessung", d: "NBC-Anlage im Volllastbetrieb, Durchsatz in m³/h" },
+    { t: "Einweisung & Wartungsplan", d: "Intervalle für Filterwechsel, Dichtungen und Notstrom" },
+    { t: "Bestandsunterlagen", d: "Pläne, Bewehrungsprotokolle, Betonsortenachweise" }
+  ],
+  faqKicker: "FAQ",
+  faqTitle: "Fragen, die zuerst kommen",
+  faqs: [
+    { q: "Brauche ich eine Genehmigung?", a: "In der Regel ja. Ein Schutzraum ist ein genehmigungspflichtiger Eingriff in die Statik, im Bestand zusätzlich in die Gründung. Wir übernehmen Bemessung, Einreichung und die Kommunikation mit dem Bauamt; rechnen Sie mit 4–8 Wochen bis zur Zustimmung." },
+    { q: "Wie lange dauert ein Projekt insgesamt?", a: "Von der ersten Bohrung bis zum Abnahmeprotokoll 15–22 Wochen im Neubau und 25–38 Wochen bei einer Nachrüstung im Bestand, Genehmigungszeit eingerechnet. Verzögerungen kommen fast immer vom Bauamt, nicht von der Baustelle." },
+    { q: "Was kostet ein Schutzraum?", a: "Ab 85.000 € für den mitgeplanten Schutzraum im Neubau; eine Nachrüstung im Bestand und ein freistehender Bunker liegen darüber. Den verbindlichen Preis nennen wir nach der Grundstücksanalyse — vorher wäre es geraten. (Platzhalter-Wert.)" },
+    { q: "Geht das in einem bestehenden Haus?", a: "Oft ja, aber nicht immer. Entscheidend sind Gründung, Kellerhöhe, Grundwasserstand und die Zufahrt für Aushub und Beton. Wenn das Haus die Lasten nicht trägt, sagen wir es nach der Analyse — und schlagen den freistehenden Bunker im Garten vor." },
+    { q: "Wer wartet die Anlage?", a: "Wir, im Wartungsvertrag: Filterwechsel alle 24 Monate, Prüfung der Dichtungen und der Türmechanik jährlich, Notstromtest halbjährlich. Nach jeder Wartung erhalten Sie ein Protokoll mit Messwerten." }
+  ],
+  conKicker: "Kontakt",
+  conTitle: "Anfrage stellen",
+  conSub: "Wir antworten innerhalb von zwei Werktagen mit einer Einschätzung, ob und wie Ihr Grundstück tragfähig ist. Kostenlos und ohne Vertriebsanruf danach.",
+  fName: "Name",
+  fMail: "E-Mail",
+  fTel: "Telefon",
+  fPlz: "PLZ des Objekts",
+  fType: "Art der Anfrage",
+  typeOptions: ["Schutzraum im Neubau", "Nachrüstung im Bestand", "Freistehender Bunker", "Wartung eines bestehenden Schutzraums", "Sonstiges"],
+  fMsg: "Nachricht",
+  fConsent: "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert werden (DSGVO Art. 6 Abs. 1 lit. a). Widerruf jederzeit möglich.",
+  submit: "Anfrage senden",
+  submitted: "Anfrage gesendet",
+  sentNote: "Demo-Formular — es wird nichts übertragen.",
+  sending: "Wird gesendet …",
+  okNote: "Anfrage gesendet — wir antworten innerhalb von zwei Werktagen.",
+  failNote: "Senden fehlgeschlagen. Bitte direkt per E-Mail schicken:",
+  mailLabel: "E-Mail öffnen",
+  contacts: [
+    { k: "Telefon", v: "+49 89 1234 5678" },
+    { k: "E-Mail", v: "anfrage@hortbau.example" },
+    { k: "Einsatzgebiet", v: "Baden-Württemberg" },
+    { k: "Büro", v: "Adresse folgt" },
+    { k: "Sprechzeiten", v: "Mo–Fr 08:00–17:00" }
+  ],
+  mapNote: "Einsatzgebiet Baden-Württemberg — Platzhalter für die eingebettete Karte.",
+  errName: "Bitte Namen angeben.",
+  errMail: "Bitte eine gültige E-Mail-Adresse angeben.",
+  errTel: "Bitte Telefonnummer angeben.",
+  errPlz: "Bitte fünfstellige PLZ angeben.",
+  errConsent: "Ohne Einwilligung können wir die Anfrage nicht bearbeiten.",
+  legal: "HRB 000000 (Platzhalter) · USt-IdNr. DE000000000 (Platzhalter) · Geschäftsführer: N. N.",
+  legalNote: "Alle juristischen Angaben und Kontaktdaten sind Platzhalter.",
+  footerLinks: ["Impressum", "Datenschutz", "AGB", "Karriere"]
+};
+
+const EN = {
+  navCta: "Request a consultation",
+  nav: [
+    { href: "#objekte", label: "Builds" },
+    { href: "#technik", label: "Specification" },
+    { href: "#ablauf", label: "Process" },
+    { href: "#nachweis", label: "Evidence" },
+    { href: "#faq", label: "FAQ" }
+  ],
+  heroA: "Ground you can",
+  heroB: "live on.",
+  heroSub: "Hortbau designs and builds private shelters across Baden-Württemberg — turnkey, from the first borehole through structural approval to the acceptance protocol. Built like a house. Tested like a bunker.",
+  heroCta: "Start an enquiry",
+  ph: "Placeholder",
+  statsLabel: "Hortbau in numbers",
+  stats: [
+    { n: "14 days", l: "Autonomy at full occupancy" },
+    { n: "300 mm", l: "Wall thickness, C35/45 concrete" },
+    { n: "60 m³/h", l: "NBC filtration throughput" },
+    { n: "DIN 25414", l: "Design basis" }
+  ],
+  objKicker: "What we build",
+  objTitle: "Three routes to a shelter",
+  objects: [
+    { n: "01", title: "Shelter in a new build", body: "Designed into the shell: the shelter becomes part of the structure rather than an addition to it. The most direct route while the basement is still formwork.", meta: "14–18 weeks on site" },
+    { n: "02", title: "Retrofit in an existing house", body: "Core drilling, underpinning, a new slab inside the existing basement. We check whether the house carries the loads first — and say so when it does not.", meta: "18–26 weeks on site" },
+    { n: "03", title: "Free-standing garden bunker", body: "Its own excavation, its own roof slab, reached by stair shaft or a connecting passage to the house. Independent of the existing structure.", meta: "16–22 weeks on site" }
+  ],
+  techKicker: "Specification",
+  techTitle: "Values by object type",
+  techNote: "These are our standard design values. Groundwater level, soil class and the occupancy you ask for will move them — after the site analysis, not before it.",
+  specs: [
+    { type: "New build", rows: [
+      { k: "Wall thickness", v: "300 mm" },
+      { k: "Roof slab", v: "350 mm" },
+      { k: "Concrete", v: "C35/45, watertight" },
+      { k: "Blast door", v: "Single leaf, 5 bar" },
+      { k: "NBC filtration", v: "60 m³/h" },
+      { k: "Autonomy", v: "14 days" },
+      { k: "Floor area", v: "12–24 m²" },
+      { k: "Occupancy", v: "4–8" },
+      { k: "Standards", v: "DIN 25414, ZS-Bauten" }
+    ] },
+    { type: "Retrofit in existing house", rows: [
+      { k: "Wall thickness", v: "250 mm" },
+      { k: "Roof slab", v: "300 mm" },
+      { k: "Concrete", v: "C35/45, watertight" },
+      { k: "Blast door", v: "Single leaf, 3 bar" },
+      { k: "NBC filtration", v: "40 m³/h" },
+      { k: "Autonomy", v: "10 days" },
+      { k: "Floor area", v: "8–16 m²" },
+      { k: "Occupancy", v: "2–6" },
+      { k: "Standards", v: "DIN 25414, applied" }
+    ] },
+    { type: "Free-standing bunker", rows: [
+      { k: "Wall thickness", v: "350 mm" },
+      { k: "Roof slab", v: "400 mm" },
+      { k: "Concrete", v: "C40/50, watertight" },
+      { k: "Blast door", v: "Two doors, 5 bar" },
+      { k: "NBC filtration", v: "90 m³/h" },
+      { k: "Autonomy", v: "21 days" },
+      { k: "Floor area", v: "20–45 m²" },
+      { k: "Occupancy", v: "6–14" },
+      { k: "Standards", v: "DIN 25414, ZS-Bauten" }
+    ] }
+  ],
+  specFoot: "Every figure on this page is a placeholder for review and must be replaced with the certified design values before publication.",
+  procKicker: "Process",
+  procTitle: "Five steps, counted in weeks",
+  steps: [
+    { n: "01", title: "Site analysis", body: "Borehole, groundwater level, access for excavator and concrete pump. We drill before we calculate.", dur: "2–3 weeks" },
+    { n: "02", title: "Structure & permit", body: "Design to DIN 25414, load verification for the existing building, submission to the building authority and support until approval.", dur: "4–8 weeks" },
+    { n: "03", title: "Construction", body: "Excavation, slab, walls and roof. The protective shell is poured in one continuous cast — no cold joint inside the protected envelope.", dur: "6–10 weeks" },
+    { n: "04", title: "Systems & filtration", body: "Blast door, NBC filter, emergency exit, power, water, ventilation and backup supply. Installation and commissioning.", dur: "2–4 weeks" },
+    { n: "05", title: "Acceptance protocol", body: "Airtightness and overpressure tests, filtration throughput measurement, handover briefing and documentation.", dur: "1 week" }
+  ],
+  docKicker: "Evidence",
+  docTitle: "What ends up in your folder",
+  docIntro: "We do not sell reassurance, we hand over measured values. Every build is delivered with test data a third party can recalculate.",
+  docs: [
+    { t: "Structural verification", d: "Checked design to DIN 25414, stamped by the verifying engineer" },
+    { t: "Airtightness & overpressure test", d: "Protocol with the full measurement series, leakage in m³/h at test pressure" },
+    { t: "Filtration throughput test", d: "NBC system at full load, throughput in m³/h" },
+    { t: "Briefing & maintenance plan", d: "Intervals for filter changes, seals and backup power" },
+    { t: "As-built documentation", d: "Drawings, reinforcement records, concrete grade certificates" }
+  ],
+  faqKicker: "FAQ",
+  faqTitle: "The questions that come first",
+  faqs: [
+    { q: "Do I need a permit?", a: "As a rule, yes. A shelter is a permit-relevant intervention in the structure, and in an existing house in the foundation as well. We handle the design, the submission and the correspondence with the building authority; allow 4–8 weeks until approval." },
+    { q: "How long does a project take?", a: "From the first borehole to the acceptance protocol: 15–22 weeks for a new build, 25–38 weeks for a retrofit, permit time included. Delays almost always come from the authority, not from the site." },
+    { q: "What does a shelter cost?", a: "From €85,000 for a shelter designed into a new build; a retrofit or a free-standing bunker sits above that. The binding figure follows the site analysis — anything earlier would be a guess. (Placeholder value.)" },
+    { q: "Is it possible in an existing house?", a: "Often, but not always. Foundation, basement height, groundwater level and access for excavation and concrete decide it. If the house cannot carry the loads we say so after the analysis — and propose the free-standing garden bunker instead." },
+    { q: "Who maintains the installation?", a: "We do, under a maintenance contract: filter change every 24 months, seals and door mechanism checked yearly, backup power tested twice a year. Every visit ends with a protocol of measured values." }
+  ],
+  conKicker: "Contact",
+  conTitle: "Make an enquiry",
+  conSub: "We reply within two working days with an assessment of whether and how your site can carry a shelter. Free, and with no sales call afterwards.",
+  fName: "Name",
+  fMail: "Email",
+  fTel: "Phone",
+  fPlz: "Postcode of the site",
+  fType: "Type of enquiry",
+  typeOptions: ["Shelter in a new build", "Retrofit in existing house", "Free-standing bunker", "Maintenance of an existing shelter", "Something else"],
+  fMsg: "Message",
+  fConsent: "I agree that my details may be stored in order to process this enquiry (GDPR Art. 6 (1) (a)). Revocable at any time.",
+  submit: "Send enquiry",
+  submitted: "Enquiry sent",
+  sentNote: "Demo form — nothing is transmitted.",
+  sending: "Sending …",
+  okNote: "Enquiry sent — we reply within two working days.",
+  failNote: "Sending failed. Please send it by email instead:",
+  mailLabel: "Open email",
+  contacts: [
+    { k: "Phone", v: "+49 89 1234 5678" },
+    { k: "Email", v: "anfrage@hortbau.example" },
+    { k: "Service area", v: "Baden-Württemberg" },
+    { k: "Office", v: "Address to follow" },
+    { k: "Hours", v: "Mon–Fri 08:00–17:00" }
+  ],
+  mapNote: "Service area Baden-Württemberg — placeholder for the embedded map.",
+  errName: "Please enter your name.",
+  errMail: "Please enter a valid email address.",
+  errTel: "Please enter a phone number.",
+  errPlz: "Please enter a five-digit postcode.",
+  errConsent: "We cannot process the enquiry without your consent.",
+  legal: "HRB 000000 (placeholder) · VAT DE000000000 (placeholder) · Managing director: N. N.",
+  legalNote: "All legal details and contact data are placeholders.",
+  footerLinks: ["Imprint", "Privacy", "Terms", "Careers"]
+};
+
+
+const RU = {
+  navCta: "Запросить консультацию",
+  nav: [
+    { href: "#objekte", label: "Объекты" },
+    { href: "#technik", label: "Техника" },
+    { href: "#ablauf", label: "Процесс" },
+    { href: "#nachweis", label: "Документы" },
+    { href: "#faq", label: "Вопросы" }
+  ],
+  heroA: "Скала под",
+  heroB: "вашим домом.",
+  heroSub: "Hortbau проектирует и строит частные защитные сооружения в Баден-Вюртемберге — под ключ: от бурения и расчёта нагрузок до протокола приёмки. Построено как дом. Проверено как бункер.",
+  heroCta: "Отправить заявку",
+  ph: "Заполнить",
+  statsLabel: "Hortbau в цифрах",
+  stats: [
+    { n: "14 дней", l: "Автономия при полной загрузке" },
+    { n: "300 мм", l: "Толщина стен, бетон C35/45" },
+    { n: "60 м³/ч", l: "Производительность NBC-фильтра" },
+    { n: "DIN 25414", l: "Основа расчёта" }
+  ],
+  objKicker: "Что мы строим",
+  objTitle: "Три пути к защитному помещению",
+  objects: [
+    { n: "01", title: "Убежище в новостройке", body: "Заложено в проект: убежище становится частью несущей схемы, а не пристройкой к ней. Самый прямой путь, пока подвал ещё в опалубке.", meta: "14–18 недель работ" },
+    { n: "02", title: "Дооснащение в существующем доме", body: "Алмазное бурение, усиление основания, новая плита в имеющемся подвале. Сначала проверяем, держит ли дом нагрузки — и говорим, если нет.", meta: "18–26 недель работ" },
+    { n: "03", title: "Отдельный бункер в саду", body: "Собственный котлован, своя перекрывающая плита, вход через лестничную шахту или переход к дому. Не зависит от состояния постройки.", meta: "16–22 недели работ" }
+  ],
+  techKicker: "Технические данные",
+  techTitle: "Спецификация по типу объекта",
+  techNote: "Это наши стандартные расчётные значения. Уровень грунтовых вод, класс грунта и нужное число мест их сдвигают — после анализа участка, а не до него.",
+  specs: [
+    { type: "Новостройка", rows: [
+      { k: "Толщина стен", v: "300 мм" },
+      { k: "Перекрытие", v: "350 мм" },
+      { k: "Бетон", v: "C35/45, водонепр." },
+      { k: "Гермодверь", v: "1 створка, 5 бар" },
+      { k: "NBC-фильтрация", v: "60 м³/ч" },
+      { k: "Автономия", v: "14 дней" },
+      { k: "Площадь", v: "12–24 м²" },
+      { k: "Человек", v: "4–8" },
+      { k: "Нормы", v: "DIN 25414, ZS-Bauten" }
+    ] },
+    { type: "Дооснащение в доме", rows: [
+      { k: "Толщина стен", v: "250 мм" },
+      { k: "Перекрытие", v: "300 мм" },
+      { k: "Бетон", v: "C35/45, водонепр." },
+      { k: "Гермодверь", v: "1 створка, 3 бар" },
+      { k: "NBC-фильтрация", v: "40 м³/ч" },
+      { k: "Автономия", v: "10 дней" },
+      { k: "Площадь", v: "8–16 м²" },
+      { k: "Человек", v: "2–6" },
+      { k: "Нормы", v: "DIN 25414, по аналогии" }
+    ] },
+    { type: "Отдельный бункер", rows: [
+      { k: "Толщина стен", v: "350 мм" },
+      { k: "Перекрытие", v: "400 мм" },
+      { k: "Бетон", v: "C40/50, водонепр." },
+      { k: "Гермодверь", v: "2 двери, 5 бар" },
+      { k: "NBC-фильтрация", v: "90 м³/ч" },
+      { k: "Автономия", v: "21 день" },
+      { k: "Площадь", v: "20–45 м²" },
+      { k: "Человек", v: "6–14" },
+      { k: "Нормы", v: "DIN 25414, ZS-Bauten" }
+    ] }
+  ],
+  specFoot: "Все цифры на этой странице — плейсхолдеры для согласования; перед публикацией их нужно заменить проверенными расчётными значениями.",
+  procKicker: "Процесс",
+  procTitle: "Пять шагов, считая в неделях",
+  steps: [
+    { n: "01", title: "Анализ участка", body: "Бурение, уровень грунтовых вод, подъезд для экскаватора и бетононасоса. Сначала бурим, потом считаем.", dur: "2–3 недели" },
+    { n: "02", title: "Статика и разрешение", body: "Расчёт по DIN 25414, проверка существующих конструкций, подача в стройнадзор и сопровождение до согласования.", dur: "4–8 недель" },
+    { n: "03", title: "Строительство", body: "Котлован, плита, стены и перекрытие. Защитная оболочка бетонируется одним заходом — без холодного шва в защитном контуре.", dur: "6–10 недель" },
+    { n: "04", title: "Техника и фильтрация", body: "Гермодверь, NBC-фильтр, аварийный выход, электрика, вода, вентиляция и резервное питание. Монтаж и наладка.", dur: "2–4 недели" },
+    { n: "05", title: "Протокол приёмки", body: "Испытание на герметичность и избыточное давление, замер производительности фильтра, инструктаж и передача документов.", dur: "1 неделя" }
+  ],
+  docKicker: "Документы",
+  docTitle: "Что в итоге лежит в вашей папке",
+  docIntro: "Мы продаём не уверенность, а проверенные значения. Каждый объект передаётся с результатами замеров — их может пересчитать третья сторона.",
+  docs: [
+    { t: "Расчёт несущих конструкций", d: "Проверенная статика по DIN 25414, с печатью инженера-эксперта" },
+    { t: "Испытание на герметичность и давление", d: "Протокол с серией замеров, утечка в м³/ч при испытательном давлении" },
+    { t: "Замер производительности фильтра", d: "NBC-установка под полной нагрузкой, расход в м³/ч" },
+    { t: "Инструктаж и план обслуживания", d: "Интервалы замены фильтров, уплотнений и проверки резервного питания" },
+    { t: "Исполнительная документация", d: "Чертежи, протоколы армирования, сертификаты марок бетона" }
+  ],
+  faqKicker: "Вопросы",
+  faqTitle: "Вопросы, которые возникают первыми",
+  faqs: [
+    { q: "Нужно ли разрешение?", a: "Как правило, да. Убежище — это вмешательство в несущую схему, требующее разрешения, а в существующем доме ещё и в основание. Расчёт, подачу и переписку со стройнадзором берём на себя; на согласование уходит 4–8 недель." },
+    { q: "Сколько длится проект целиком?", a: "От первого бурения до протокола приёмки: 15–22 недели в новостройке и 25–38 недель при дооснащении существующего дома, включая время согласования. Задержки почти всегда идут от ведомства, а не со стройки." },
+    { q: "Сколько стоит убежище?", a: "От 85 000 € за убежище, заложенное в проект новостройки; дооснащение в существующем доме и отдельный бункер дороже. Окончательную цену называем после анализа участка — раньше это было бы гадание. (Значение-плейсхолдер.)" },
+    { q: "Возможно ли это в существующем доме?", a: "Часто да, но не всегда. Решают основание, высота подвала, уровень грунтовых вод и подъезд для выемки грунта и бетона. Если дом не держит нагрузки, мы скажем это после анализа — и предложим отдельный бункер в саду." },
+    { q: "Кто обслуживает установку?", a: "Мы, по договору обслуживания: замена фильтров каждые 24 месяца, проверка уплотнений и механики двери — ежегодно, тест резервного питания — раз в полгода. После каждого визита вы получаете протокол с замерами." }
+  ],
+  conKicker: "Контакт",
+  conTitle: "Отправить заявку",
+  conSub: "Отвечаем в течение двух рабочих дней оценкой того, возможно ли убежище на вашем участке и каким образом. Бесплатно и без последующих звонков от продаж.",
+  fName: "Имя",
+  fMail: "E-mail",
+  fTel: "Телефон",
+  fPlz: "Индекс объекта (PLZ)",
+  fType: "Тип запроса",
+  typeOptions: ["Убежище в новостройке", "Дооснащение в существующем доме", "Отдельный бункер", "Обслуживание существующего убежища", "Другое"],
+  fMsg: "Сообщение",
+  fConsent: "Я согласен на хранение моих данных для обработки заявки (GDPR ст. 6 п. 1 (a)). Согласие можно отозвать в любой момент.",
+  submit: "Отправить заявку",
+  submitted: "Заявка отправлена",
+  sentNote: "Демо-форма — данные никуда не уходят.",
+  sending: "Отправляется …",
+  okNote: "Заявка отправлена — ответим в течение двух рабочих дней.",
+  failNote: "Отправить не удалось. Напишите, пожалуйста, напрямую на e-mail:",
+  mailLabel: "Открыть письмо",
+  contacts: [
+    { k: "Телефон", v: "+49 89 1234 5678" },
+    { k: "E-mail", v: "anfrage@hortbau.example" },
+    { k: "Регион работ", v: "Баден-Вюртемберг" },
+    { k: "Офис", v: "Адрес будет позже" },
+    { k: "Часы работы", v: "Пн–Пт 08:00–17:00" }
+  ],
+  mapNote: "Регион работ — Баден-Вюртемберг. Плейсхолдер для встроенной карты.",
+  errName: "Укажите имя.",
+  errMail: "Укажите корректный e-mail.",
+  errTel: "Укажите телефон.",
+  errPlz: "Укажите пятизначный индекс.",
+  errConsent: "Без согласия мы не можем обработать заявку.",
+  legal: "HRB 000000 (плейсхолдер) · USt-IdNr. DE000000000 (плейсхолдер) · Директор: N. N.",
+  legalNote: "Все юридические данные и контакты — плейсхолдеры.",
+  footerLinks: ["Impressum", "Политика данных", "Условия", "Вакансии"]
+};
+
+class Component extends DCLogic {
+  state = {
+    lang: null,
+    values: { name: "", email: "", tel: "", plz: "", type: "", msg: "" },
+    consent: false,
+    errors: {},
+    sending: false,
+    sent: false,
+    failed: false
+  };
+
+  get lang() {
+    return this.state.lang || this.props.lang || "de";
+  }
+
+  get dict() {
+    return { de: DE, en: EN, ru: RU }[this.lang] || DE;
+  }
+
+  componentDidMount() {
+    this.syncLang();
+  }
+
+  componentDidUpdate() {
+    this.syncLang();
+  }
+
+  syncLang() {
+    if (typeof document !== "undefined") document.documentElement.lang = this.lang;
+  }
+
+  setLang = (lang) => this.setState({ lang, errors: {} });
+
+  field(key) {
+    const err = this.state.errors[key] || "";
+    return {
+      v: this.state.values[key],
+      e: err,
+      border: err ? "var(--color-accent-400)" : "",
+      on: (e) => {
+        const val = e.target.value;
+        this.setState((s) => ({
+          values: Object.assign({}, s.values, { [key]: val }),
+          errors: Object.assign({}, s.errors, { [key]: "" })
+        }));
+      }
+    };
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const t = this.dict;
+    const v = this.state.values;
+    const errors = {};
+    if (!v.name.trim()) errors.name = t.errName;
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(v.email.trim())) errors.email = t.errMail;
+    if (v.tel.replace(/[^\d]/g, "").length < 6) errors.tel = t.errTel;
+    if (!/^\d{5}$/.test(v.plz.trim())) errors.plz = t.errPlz;
+    if (!this.state.consent) errors.consent = t.errConsent;
+    if (Object.keys(errors).length) return this.setState({ errors, sent: false, failed: false });
+    const to = (this.props.formEmail || "").trim();
+    if (!to) return this.setState({ errors: {}, sent: true, failed: false });
+    this.setState({ errors: {}, sending: true, failed: false });
+    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(to), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: "Hortbau — Anfrage: " + (v.type || t.typeOptions[0]),
+        Name: v.name, "E-Mail": v.email, Telefon: v.tel, PLZ: v.plz,
+        Anfragetyp: v.type || t.typeOptions[0], Nachricht: v.msg, Sprache: this.lang
+      })
+    })
+      .then((r) => { if (!r.ok) throw new Error("http " + r.status); return r.json(); })
+      .then(() => this.setState({ sending: false, sent: true }))
+      .catch(() => this.setState({ sending: false, failed: true }));
+  };
+
+  renderVals() {
+    const t = this.dict;
+    const phone = this.props.phoneNumber ?? t.contacts[0].v;
+    const mailTo = (this.props.formEmail || "").trim();
+    const v = this.state.values;
+    const contacts = t.contacts.map((c, i) => (i === 0 ? { k: c.k, v: phone } : c));
+    return {
+      t,
+      nav: t.nav,
+      langs: [
+        { code: "de", label: "DE" },
+        { code: "en", label: "EN" },
+        { code: "ru", label: "RU" }
+      ].map((l) => ({
+        code: l.code,
+        label: l.label,
+        bg: this.lang === l.code ? "var(--color-accent-800)" : "transparent",
+        ink: this.lang === l.code ? "var(--color-accent-200)" : "var(--color-neutral-500)",
+        pressed: this.lang === l.code,
+        on: () => this.setLang(l.code)
+      })),
+      phone,
+      telHref: "tel:" + phone.replace(/[^\d+]/g, ""),
+      contacts,
+      f: {
+        name: this.field("name"),
+        email: this.field("email"),
+        tel: this.field("tel"),
+        plz: this.field("plz"),
+        type: this.field("type"),
+        msg: this.field("msg")
+      },
+      consent: {
+        v: this.state.consent,
+        e: this.state.errors.consent || "",
+        on: (e) => {
+          const checked = e.target.checked;
+          this.setState((s) => ({ consent: checked, errors: Object.assign({}, s.errors, { consent: "" }) }));
+        }
+      },
+      sent: this.state.sent,
+      busy: this.state.sent || this.state.sending,
+      submitLabel: this.state.sending ? t.sending : this.state.sent ? t.submitted : t.submit,
+      sentNote: this.state.sending ? t.sending : this.state.sent ? (mailTo ? t.okNote : t.sentNote) : this.state.failed ? t.failNote : "",
+      failed: this.state.failed,
+      mailHref: mailTo
+        ? "mailto:" + mailTo + "?subject=" + encodeURIComponent("Hortbau — Anfrage") +
+          "&body=" + encodeURIComponent([t.fName + ": " + v.name, t.fMail + ": " + v.email, t.fTel + ": " + v.tel, t.fPlz + ": " + v.plz, t.fType + ": " + (v.type || t.typeOptions[0]), "", v.msg].join("\n"))
+        : "",
+      mailLabel: t.mailLabel,
+      onSubmit: this.onSubmit
+    };
+  }
+}
+</script>
+</body>
+</html>
